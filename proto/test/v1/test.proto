@@ -16,6 +16,6 @@ message TestResponse {
 }
 
 
-service ApplicationService {
+service TestService {
     rpc Test(TestRequest) returns (TestResponse) {}
 }
