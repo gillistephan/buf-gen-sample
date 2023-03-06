@@ -1,0 +1,21 @@
+syntax = "proto3";
+package test.v1;
+
+import "google/type/date.proto";
+import "validate/validate.proto";
+
+
+message TestRequest {
+    string name = 1 [(validate.rules).string.min_len = 1];
+}
+
+message TestResponse {
+    string id = 1;
+    google.type.Date start = 2;
+    google.type.Date end = 3;
+}
+
+
+service ApplicationService {
+    rpc Test(TestRequest) returns (TestResponse) {}
+}

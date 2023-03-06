@@ -1,0 +1,26 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: 'go/api'
+    except:
+      - 'buf.build/envoyproxy/protoc-gen-validate'
+      - 'buf.build/googleapis/googleapis'
+plugins:
+  # go 
+  - plugin: buf.build/protocolbuffers/go:v1.28.1
+    out: "."
+  - remote: buf.build/funcards/plugins/protoc-gen-validate:v0.6.13
+    out: "."
+    opt:
+      - "lang=go"
+  - plugin: buf.build/bufbuild/connect-go
+    out: "."
+  # ts
+  - name: es
+    out: ts/gen
+    opt: target=js+dts
+  - name: connect-query
+    out: ts/gen
+    opt: target=js+dts
+      
